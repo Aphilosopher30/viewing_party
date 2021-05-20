@@ -4,9 +4,9 @@ class FilmService
     parse_json(resp)
   end
 
-  def self.get_first_10_credits(movie_id)
+  def self.credits(movie_id)
     resp = conn.get("/3/movie/#{movie_id}/credits")
-    parse_json(resp)[:cast][0..9]
+    parse_json(resp)
   end
 
   def self.get_movie_reviews(movie_id)

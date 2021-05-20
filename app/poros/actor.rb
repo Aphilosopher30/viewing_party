@@ -5,5 +5,4 @@ class Actor
     @name = actor[:name]
     @character = actor[:character]
   end
-
 end

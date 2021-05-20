@@ -1,0 +1,23 @@
+<h3>ViewingParty Details:</h3>
+
+<%= form_with model: @party do |f| %>
+  <%= f.hidden_field :title, value: @title %>
+  <%= f.hidden_field :movie_id, value: @movie_id %>
+
+  <%= f.label :movie_title, 'Movie Title' %>
+  <%= @title %> <br><br>
+
+  <%= f.label :duration %>
+  <%= f.number_field :duration, required: true, min: @duration, value: @duration %> <br><br>
+
+  <%= f.label :date, 'Day' %>
+  <%= f.date_field :date, required: true %> <br><br>
+
+  <%= f.label :start_time, 'Start Time' %>
+  <%= f.time_field :start_time, required: true %> <br><br>
+
+  <%= f.label :guests, 'Invite Friends' %>
+  <%= f.collection_check_boxes :guests, current_user.friends, :id, :name %> <br>
+
+  <%= f.submit %>
+<% end %>

@@ -41,13 +41,11 @@ RSpec.describe MovieFacade do
 
     it 'reviews', :vcr  do
       movie_id = 76341
-
-
       reviews = MovieFacade.reviews(movie_id)
 
-      expected = []
-
-      expect(reviews).to eq(expected)
+      expect(reviews.count).to eq(11)
+      expect(reviews.first.class).to eq(Review)
+      expect(reviews.last.class).to eq(Review)
     end
   end
 end

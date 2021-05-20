@@ -5,6 +5,7 @@ RSpec.describe User do
     it { should have_many(:friends).dependent(:destroy) }
     it { should have_many(:parties).dependent(:destroy) }
     it { should have_many(:guests).dependent(:destroy) }
+    it { should have_many :invites }
   end
 
   describe 'validations' do

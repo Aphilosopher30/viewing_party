@@ -1,9 +1,11 @@
 FactoryBot.define do
   factory :party do
     association :host, factory: :user
-    association :movie, factory: :movie
 
     date { Faker::Date.forward(days: 30) }
-    start_time { '6 pm' }
+    start_time { '07:00' }
+    movie_id { 76341 }
+    title { 'Mad Max: Fury Road' }
+    duration { 121 }
   end
 end

@@ -1,7 +1,10 @@
-<% cast = FilmService.get_first_10_credits(@movie_id) %>
-<% reviews = FilmService.get_movie_reviews(@movie_id) %>
-
 <h1><%= @movie.title %></h1>
+
+<%= button_to 'Create ViewingParty for Movie!',
+  new_party_path,
+  method: :get,
+  params: {title: @movie.title, duration: @movie.runtime, movie_id: @movie.id} %>
+
 
 <div id="details">
   <% runtime = @movie.runtime %>
@@ -11,22 +14,23 @@
   <p>Runtime: <%= runtime / 60 %> hrs <%= runtime % 60 %> mins </p>
   <p>Genre: <%= genres.join(', ') %></p>
   <p>Summary Description: <%= @movie.overview %></p>
+
 </div>
 
 <div id="cast">
   <ul>
-    <% cast.each do |member| %>
-      <li><%= member[:name] %> as <%= member[:character] %></li>
+    <% @cast.each do |member| %>
+      <li><%= member.name %> as <%= member.character %></li>
     <% end %>
   </ul>
 </div>
 
 <div id="reviews">
-  <h2><%= reviews[:total_results] %> Reviews: </h2>
-  <% reviews[:results].each do |review| %>
+  <h2><%= @reviews.count %> Reviews: </h2>
+  <% @reviews.each do |review| %>
     <div class="review">
-      <h4>Author: <%= review[:author] %></h4>
-      <p><%= review[:content] %></p>
+      <h4>Author: <%= review.author %></h4>
+      <p><%= review.content %></p>
     </div>
   <% end %>
 </div>
