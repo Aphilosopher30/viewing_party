@@ -1,0 +1,26 @@
+<% events.each do |party| %>
+  <ul class='dashboard_parties'>
+    <li><%= link_to party.title, movie_path(party.movie_id) %></li>
+    <ul>
+      <li>Date: <%= party.date.strftime('%_m/%e/%y') %>,
+        Starting Time: <%= party.start_time.strftime('%l:%M %p') %></li>
+
+      <% if party.host_id != current_user.id %>
+        <li>Host: <%= party.host.name %></li>
+      <% end %>
+
+      <% if party.guests.present? %>
+        <li>Invited Friends:</li>
+        <ul>
+          <% party.guests.each do |friend| %>
+            <% if friend.user_id == current_user.id %>
+              <li id='user'><%= friend.name %></li>
+            <% else %>
+              <li><%= friend.name %></li>
+            <% end %>
+          <% end %>
+        </ul>
+      <% end %>
+    </ul>
+  </ul>
+<% end %>
