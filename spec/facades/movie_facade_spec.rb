@@ -9,8 +9,5 @@ RSpec.describe MovieFacade do
 
       expect(movie.class).to eq(Movie)
     end
-
   end
-
-
 end

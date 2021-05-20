@@ -53,14 +53,15 @@ class FilmService
   #   parse_json(resp)[:results]
   # end
 
-  def self.top_movies(number_of_results = 40) # select 40 >> facades
+  # select 40 >> facades
+  def self.top_movies(number_of_results = 40)
     link = '/3/movie/top_rated'
     relevant_movies(link).first(number_of_results)
   end
 
   def self.movie_search(title, number_of_results = 40)
     link = '/3/search/movie'
-    query = {query: title}
+    query = { query: title }
     pages = total_pages(link, query)
     relevant_movies(link, query, pages).first(number_of_results)
   end
@@ -73,7 +74,7 @@ class FilmService
   def self.relevant_movies(link, paramiters = {}, pages = 2)
     total = []
     pages.times do |page_number|
-      params = paramiters.merge( {page: (page_number+1) })
+      params = paramiters.merge({ page: (page_number + 1) })
       resp = response(link, params)
       results = parse_json(resp)[:results]
       total.concat(results)
@@ -82,7 +83,7 @@ class FilmService
   end
 
   def self.response(link, params = {})
-    resp = conn.get(link) do |faraday|
+    conn.get(link) do |faraday|
       params.each do |k, v|
         faraday.params[k] = v
       end

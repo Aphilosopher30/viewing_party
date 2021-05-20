@@ -9,6 +9,4 @@ class Movie
     @genres = movie[:genres]
     @overview = movie[:overview]
   end
-
-
 end
