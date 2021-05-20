@@ -1,17 +1,16 @@
-<% movie = FilmService.get_movie_info(@movie_id) %>
 <% cast = FilmService.get_first_10_credits(@movie_id) %>
 <% reviews = FilmService.get_movie_reviews(@movie_id) %>
 
-<h1><%= movie[:title] %></h1>
+<h1><%= @movie.title %></h1>
 
 <div id="details">
-  <% runtime = movie[:runtime] %>
-  <% genres = movie[:genres].map { |hash| hash[:name] } %>
+  <% runtime = @movie.runtime %>
+  <% genres = @movie.genres.map { |genera| genera[:name] } %>
 
-  <p>Vote Average: <%= movie[:vote_average] %></p>
+  <p>Vote Average: <%= @movie.vote_average %></p>
   <p>Runtime: <%= runtime / 60 %> hrs <%= runtime % 60 %> mins </p>
   <p>Genre: <%= genres.join(', ') %></p>
-  <p>Summary Description: <%= movie[:overview] %></p>
+  <p>Summary Description: <%= @movie.overview %></p>
 </div>
 
 <div id="cast">

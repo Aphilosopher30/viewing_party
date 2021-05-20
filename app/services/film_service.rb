@@ -14,30 +14,6 @@ class FilmService
     parse_json(resp)
   end
 
-
-
-
-
-  def self.top_movies(number_of_results = 40)
-    relevant_movies(2).first(number_of_results)
-  end
-
-
-
-  def self.relevant_movies( pages = 2)
-    total = []
-    pages.times do |page_number|
-      link = '/3/movie/top_rated'
-      params = { page: (page_number+1) }
-      resp = response(link, params)
-
-      results = parse_json(resp)[:results]
-      total.concat(results)
-    end
-    total
-  end
-
-
   # def self.top_movies
   #   top_page1 + top_page2
   # end
@@ -73,12 +49,11 @@ class FilmService
   #     params.each do |k, v|
   #       faraday.params[k] = v
   #     end
-  # #   end
   #
   #   parse_json(resp)[:results]
   # end
 
-  def self.top_movies(number_of_results = 40)
+  def self.top_movies(number_of_results = 40) # select 40 >> facades
     link = '/3/movie/top_rated'
     relevant_movies(link).first(number_of_results)
   end
@@ -112,11 +87,7 @@ class FilmService
         faraday.params[k] = v
       end
     end
-    resp
   end
-  #####
-
-
 
   def self.conn
     Faraday.new(url: 'https://api.themoviedb.org') do |faraday|

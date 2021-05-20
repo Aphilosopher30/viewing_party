@@ -7,10 +7,14 @@ class MoviesController < ApplicationController
                else
                  FilmService.top_movies
                end
+
+
   end
 
   def show
     @movie_id = params[:id]
+    @movie = MovieFacade.one_movie(params[:id])
+
   end
 
   def discover; end
