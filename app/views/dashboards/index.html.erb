@@ -30,5 +30,20 @@
 </div>
 
 
-<div id="parties">
+<div id="hosted_parties">
+  <h3>Your Parties</h3>
+  <% if @parties.present? %>
+    <%= render partial: 'parties', locals: {events: @parties} %>
+  <% else %>
+    <p>You aren't currently hosting any parties</p>
+  <% end %>
+</div>
+
+<div id="invited_parties">
+  <h3>Party Invitations</h3>
+  <% if @invites.present? %>
+    <%= render partial: 'parties', locals: {events: @invites} %>
+  <% else %>
+    <p>You aren't currently invited to any parties</p>
+  <% end %>
 </div>

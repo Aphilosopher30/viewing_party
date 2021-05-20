@@ -52,4 +52,16 @@ RSpec.describe 'movies show page' do
       end
     end
   end
+
+  context 'you want to host a party for this movie', :vcr do
+    it 'there is a button to create a new party' do
+      expect(page).to have_button('Create ViewingParty for Movie!')
+    end
+
+    it 'the new party button takes you to the new party page' do
+      click_on 'Create ViewingParty for Movie!'
+
+      expect(current_path).to eq(new_party_path)
+    end
+  end
 end

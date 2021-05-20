@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   resources :movies
   resources :dashboards, only: [:index]
   resources :friends
+  resources :parties
 end
