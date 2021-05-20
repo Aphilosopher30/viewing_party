@@ -10,9 +10,10 @@ class MoviesController < ApplicationController
 
   def show
     @movie_id = params[:id]
-    @movie = FilmService.get_movie_info(@movie_id)
-    @cast = FilmService.get_first_10_credits(@movie_id)
-    @reviews = FilmService.get_movie_reviews(@movie_id)
+    @movie = MovieFacade.one_movie(params[:id])
+
+    @cast = MovieFacade.ten_actors(@movie_id)
+    @reviews = MovieFacade.reviews(@movie_id)
   end
 
   def discover; end

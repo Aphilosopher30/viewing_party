@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.themoviedb.org/3/movie/top_rated?api_key=<DONT_SHARE_MY_TMDB_SECRET_KEY>
+    uri: https://api.themoviedb.org/3/movie/top_rated?api_key=<DONT_SHARE_MY_TMDB_SECRET_KEY>&page=1
     body:
       encoding: US-ASCII
       string: ''
