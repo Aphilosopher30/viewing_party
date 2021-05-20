@@ -10,7 +10,7 @@ RSpec.describe 'welcome page' do
       expect(page).to have_content("Welcome to ViewingParty")
     end
 
-    it "has application discription" do
+    it "has application discription", :logged_out do
       expect(page).to have_content("The app for planning movie parties with your friends!")
     end
 
@@ -27,17 +27,25 @@ RSpec.describe 'welcome page' do
     end
   end
 
-  context "when you are allready logged in" do
+  context "when you are already logged in" do
+    before :each do
+      @user = create(:user)
+    end
+    
     it "has no login and no register link" do
-      expect(page).to_not have_link("Login")
-      expect(page).to_not have_link("Register new user")
+      expect(current_path).to eq(dashboards_path)
     end
 
     it "has a log out link" do
       expect(page).to have_link("Logout")
     end
 
-    it "logout link works" do
+    it "logout link works", :logged_out do
+      visit login_path
+      fill_in 'email', with: @user.email
+      fill_in 'password', with: @user.password
+      click_on 'Login'
+      
       click_on "Logout"
       expect(current_path).to eq(root_path)
       expect(page).to have_content("You have successfully logged off.")

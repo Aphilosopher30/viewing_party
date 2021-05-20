@@ -1,6 +1,4 @@
 <p> The app for planning movie parties with your friends! </p>
 
-<% if current_user.nil? %>
-  <%= link_to "Login", login_path %> <br>
-  <%= link_to "Register new user", register_path %>
-<% end %>
+<%= link_to "Login", login_path %> <br>
+<%= link_to "Register new user", register_path %>
