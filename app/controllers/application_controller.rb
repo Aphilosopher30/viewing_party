@@ -3,7 +3,9 @@ class ApplicationController < ActionController::Base
   before_action :authorized
   skip_before_action :authorized, only: :welcome
 
-  def welcome; end
+  def welcome
+    redirect_to dashboards_path if current_user.present?
+  end
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
