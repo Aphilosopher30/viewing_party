@@ -97,4 +97,40 @@ RSpec.describe 'you visit your dashboard ' do
       end
     end
   end
+
+  context 'you have been invited to a party' do
+    before :each do
+      @user1 = create(:user)
+      @host = create(:user)
+      @party = create(:party, host: @host)
+      create(:guest, user: @user1, party: @party)
+
+      visit login_path
+      fill_in 'email', with: @user1.email
+      fill_in 'password', with: @user1.password
+      click_on 'Login'
+    end
+
+    it 'the party info is on the dashboard', :logged_out do
+      within '#invited_parties' do
+        expect(page).to have_content(@user1.name)
+      end
+    end
+
+    it 'the movie name is a link to the movie show page', :logged_out, :vcr do
+      expect(page).to have_link(@party.title)
+      click_on @party.title
+
+      expect(current_path).to eq(movie_path(@party.movie_id))
+    end
+  end
+
+  context 'you have not been invited to nor created any parties' do
+    it 'the page tells you so' do
+      visit dashboards_path
+
+      expect(page).to have_content("You aren't currently hosting any parties")
+      expect(page).to have_content("You aren't currently invited to any parties")
+    end
+  end
 end
