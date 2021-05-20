@@ -16,26 +16,26 @@ class FilmService
 
 
 
-  def self.total_pages
-    resp = conn.get('/3/movie/top_rated')
-    parse_json(resp)[:total_pages]
-  end
+
 
   def self.top_movies(number_of_results = 40)
     relevant_movies(2).first(number_of_results)
   end
 
-  def self.relevant_movies( pages = total_pages)
+
+
+  def self.relevant_movies( pages = 2)
     total = []
     pages.times do |page_number|
-      resp = conn.get('/3/movie/top_rated') { |faraday| faraday.params['page'] = page_number +1}
+      link = '/3/movie/top_rated'
+      params = { page: (page_number+1) }
+      resp = response(link, params)
+
       results = parse_json(resp)[:results]
       total.concat(results)
     end
     total
   end
-
-
 
 
   # def self.top_movies
@@ -55,29 +55,68 @@ class FilmService
   #   parse_json(resp)[:results]
   # end
 
+  # def self.movie_search(title)
+  #   search_page1(title) + search_page2(title)
+  # end
+  #
+  # def self.search_page1(title)
+  #   resp = conn.get('/3/search/movie') do |faraday|
+  #     faraday.params['query'] = title
+  #   end
+  #
+  #   parse_json(resp)[:results]
+  # end
+  #
+  # def self.search_page2(title)
+  #   params = { query: title, page: 2 }
+  #   resp = conn.get('/3/search/movie') do |faraday|
+  #     params.each do |k, v|
+  #       faraday.params[k] = v
+  #     end
+  # #   end
+  #
+  #   parse_json(resp)[:results]
+  # end
 
-  def self.movie_search(title)
-    search_page1(title) + search_page2(title)
+  def self.top_movies(number_of_results = 40)
+    link = '/3/movie/top_rated'
+    relevant_movies(link).first(number_of_results)
   end
 
-  def self.search_page1(title)
-    resp = conn.get('/3/search/movie') do |faraday|
-      faraday.params['query'] = title
+  def self.movie_search(title, number_of_results = 40)
+    link = '/3/search/movie'
+    query = {query: title}
+    pages = total_pages(link, query)
+    relevant_movies(link, query, pages).first(number_of_results)
+  end
+
+  def self.total_pages(link, params)
+    resp = response(link, params)
+    parse_json(resp)[:total_pages]
+  end
+
+  def self.relevant_movies(link, paramiters = {}, pages = 2)
+    total = []
+    pages.times do |page_number|
+      params = paramiters.merge( {page: (page_number+1) })
+      resp = response(link, params)
+      results = parse_json(resp)[:results]
+      total.concat(results)
     end
-
-    parse_json(resp)[:results]
+    total
   end
 
-  def self.search_page2(title)
-    params = { query: title, page: 2 }
-    resp = conn.get('/3/search/movie') do |faraday|
+  def self.response(link, params = {})
+    resp = conn.get(link) do |faraday|
       params.each do |k, v|
         faraday.params[k] = v
       end
     end
-
-    parse_json(resp)[:results]
+    resp
   end
+  #####
+
+
 
   def self.conn
     Faraday.new(url: 'https://api.themoviedb.org') do |faraday|
