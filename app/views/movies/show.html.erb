@@ -1,30 +1,31 @@
-<% movie = FilmService.get_movie_info(@movie_id) %>
-<% cast = FilmService.get_first_10_credits(@movie_id) %>
-<% reviews = FilmService.get_movie_reviews(@movie_id) %>
+<h1><%= @movie[:title] %></h1>
 
-<h1><%= movie[:title] %></h1>
+<%= button_to 'Create ViewingParty for Movie!',
+  new_party_path,
+  method: :get,
+  params: {title: @movie[:title], duration: @movie[:runtime], movie_id: @movie_id} %>
 
 <div id="details">
-  <% runtime = movie[:runtime] %>
-  <% genres = movie[:genres].map { |hash| hash[:name] } %>
+  <% runtime = @movie[:runtime] %>
+  <% genres = @movie[:genres].map { |hash| hash[:name] } %>
 
-  <p>Vote Average: <%= movie[:vote_average] %></p>
+  <p>Vote Average: <%= @movie[:vote_average] %></p>
   <p>Runtime: <%= runtime / 60 %> hrs <%= runtime % 60 %> mins </p>
   <p>Genre: <%= genres.join(', ') %></p>
-  <p>Summary Description: <%= movie[:overview] %></p>
+  <p>Summary Description: <%= @movie[:overview] %></p>
 </div>
 
 <div id="cast">
   <ul>
-    <% cast.each do |member| %>
+    <% @cast.each do |member| %>
       <li><%= member[:name] %> as <%= member[:character] %></li>
     <% end %>
   </ul>
 </div>
 
 <div id="reviews">
-  <h2><%= reviews[:total_results] %> Reviews: </h2>
-  <% reviews[:results].each do |review| %>
+  <h2><%= @reviews[:total_results] %> Reviews: </h2>
+  <% @reviews[:results].each do |review| %>
     <div class="review">
       <h4>Author: <%= review[:author] %></h4>
       <p><%= review[:content] %></p>
