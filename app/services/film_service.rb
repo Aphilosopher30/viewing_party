@@ -14,46 +14,6 @@ class FilmService
     parse_json(resp)
   end
 
-  # def self.top_movies
-  #   top_page1 + top_page2
-  # end
-  #
-  # def self.top_page1
-  #   resp = conn.get('/3/movie/top_rated')
-  #   parse_json(resp)[:results]
-  # end
-  #
-  # def self.top_page2
-  #   resp = conn.get('/3/movie/top_rated') do |faraday|
-  #     faraday.params['page'] = 2
-  #   end
-
-  #   parse_json(resp)[:results]
-  # end
-
-  # def self.movie_search(title)
-  #   search_page1(title) + search_page2(title)
-  # end
-  #
-  # def self.search_page1(title)
-  #   resp = conn.get('/3/search/movie') do |faraday|
-  #     faraday.params['query'] = title
-  #   end
-  #
-  #   parse_json(resp)[:results]
-  # end
-  #
-  # def self.search_page2(title)
-  #   params = { query: title, page: 2 }
-  #   resp = conn.get('/3/search/movie') do |faraday|
-  #     params.each do |k, v|
-  #       faraday.params[k] = v
-  #     end
-  #
-  #   parse_json(resp)[:results]
-  # end
-
-  # select 40 >> facades
   def self.top_movies(number_of_results = 40)
     link = '/3/movie/top_rated'
     relevant_movies(link).first(number_of_results)
