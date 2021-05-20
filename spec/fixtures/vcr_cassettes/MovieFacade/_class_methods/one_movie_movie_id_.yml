@@ -1,0 +1,78 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.themoviedb.org/3/movie/76341?api_key=<DONT_SHARE_MY_TMDB_SECRET_KEY>
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.4.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json;charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Date:
+      - Thu, 20 May 2021 05:11:39 GMT
+      Server:
+      - openresty
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, HEAD, POST, PUT, DELETE, OPTIONS
+      Access-Control-Expose-Headers:
+      - ETag, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, Retry-After,
+        Content-Length, Content-Range
+      Cache-Control:
+      - public, max-age=28800
+      X-Memc:
+      - HIT
+      X-Memc-Key:
+      - 3287be3647eaf77988bb041c9715bc8b09fe422d
+      X-Memc-Age:
+      - '8976'
+      X-Memc-Expires:
+      - '7186'
+      Etag:
+      - W/"04437268101b6e28b76b4e42f6f54df9"
+      Vary:
+      - Accept-Encoding
+      X-Cache:
+      - Hit from cloudfront
+      Via:
+      - 1.1 788f6ff13e09a712f5227945fa34a519.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - DEN50-C2
+      X-Amz-Cf-Id:
+      - PYyH7hmwDOpKrAkevIq3oYX0ozJzCFWWDccr6GmqyW67IkEtxEcPyg==
+      Age:
+      - '724'
+    body:
+      encoding: ASCII-8BIT
+      string: '{"adult":false,"backdrop_path":"/nlCHUWjY9XWbuEUQauCBgnY8ymF.jpg","belongs_to_collection":{"id":8945,"name":"Mad
+        Max Collection","poster_path":"/uuvSvLb3ntGA9B0wx2JskVDSuWi.jpg","backdrop_path":"/gwYe803SFwKlCF5y71OicWHUnVD.jpg"},"budget":150000000,"genres":[{"id":28,"name":"Action"},{"id":12,"name":"Adventure"},{"id":878,"name":"Science
+        Fiction"}],"homepage":"https://www.warnerbros.com/movies/mad-max-fury-road","id":76341,"imdb_id":"tt1392190","original_language":"en","original_title":"Mad
+        Max: Fury Road","overview":"An apocalyptic story set in the furthest reaches
+        of our planet, in a stark desert landscape where humanity is broken, and most
+        everyone is crazed fighting for the necessities of life. Within this world
+        exist two rebels on the run who just might be able to restore order.","popularity":41.561,"poster_path":"/8tZYtuWezp8JbcsvHYO0O46tFbo.jpg","production_companies":[{"id":2537,"logo_path":null,"name":"Kennedy
+        Miller Productions","origin_country":"AU"},{"id":174,"logo_path":"/IuAlhI9eVC9Z8UQWOIDdWRKSEJ.png","name":"Warner
+        Bros. Pictures","origin_country":"US"},{"id":41624,"logo_path":"/wzKxIeQKlMP0y5CaAw25MD6EQmf.png","name":"RatPac
+        Entertainment","origin_country":"US"},{"id":79,"logo_path":"/tpFpsqbleCzEE2p5EgvUq6ozfCA.png","name":"Village
+        Roadshow Pictures","origin_country":"US"}],"production_countries":[{"iso_3166_1":"AU","name":"Australia"},{"iso_3166_1":"US","name":"United
+        States of America"},{"iso_3166_1":"ZA","name":"South Africa"}],"release_date":"2015-05-13","revenue":378858340,"runtime":121,"spoken_languages":[{"english_name":"English","iso_639_1":"en","name":"English"}],"status":"Released","tagline":"What
+        a Lovely Day.","title":"Mad Max: Fury Road","video":false,"vote_average":7.5,"vote_count":17994}'
+  recorded_at: Thu, 20 May 2021 05:23:43 GMT
+recorded_with: VCR 6.0.0

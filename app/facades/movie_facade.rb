@@ -1,11 +1,7 @@
 class MovieFacade
 
-
-
-  def self.one_movie(one_movie_info)
-    response = FilmService.get_movie_info(one_movie_info)
-    Movie.new(response)
+  def self.one_movie(movie_id)
+    movie_info = FilmService.get_movie_info(movie_id)
+    Movie.new(movie_info)
   end
-
-
 end
