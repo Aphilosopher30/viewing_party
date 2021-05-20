@@ -1,7 +1,6 @@
 class MoviesController < ApplicationController
   def index
-    @title = to_uri(params[:title]) if params[:title] && params[:title].present?
-
+    @title = params[:title] if params[:title] && params[:title].present?
     @service = if @title
                  FilmService.movie_search(@title)
                else

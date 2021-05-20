@@ -17,10 +17,6 @@ class ApplicationController < ActionController::Base
     errors.full_messages.join(', ')
   end
 
-  def to_uri(param)
-    param.gsub(' ', '%20')
-  end
-
   def authorized
     redirect_to root_path, notice: 'You need to be logged in to access that page' unless current_user
   end
