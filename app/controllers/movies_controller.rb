@@ -11,7 +11,6 @@ class MoviesController < ApplicationController
   def show
     @movie_id = params[:id]
     @movie = MovieFacade.one_movie(params[:id])
-
     @cast = MovieFacade.ten_actors(@movie_id)
     @reviews = MovieFacade.reviews(@movie_id)
   end
